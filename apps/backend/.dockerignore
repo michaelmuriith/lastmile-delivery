@@ -1,0 +1,19 @@
+# OneDrive and Windows metadata
+Thumbs.db
+desktop.ini
+~$*
+*.tmp
+*.lnk
+*.DS_Store
+*.sync-conflict*
+*.gdoc
+*.gsheet
+*.one
+*.onetoc2
+
+# Build noise
+node_modules
+build
+dist
+.next
+.cache
