@@ -17,6 +17,20 @@ services:
       - JWT_SECRET=supersecret
     depends_on:
       - db
+      
+  cache:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+  
+  monitoring:
+    image: prom/prometheus:latest
+    restart: always
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
 
   db:
     image: postgres:15

@@ -1,0 +1,33 @@
+{
+  "services": [
+    {
+      "name": "backend",
+      "rootDirectory": "apps/backend",
+      "buildCommand": "npm install && npm run build",
+      "startCommand": "node dist/main",
+      "envVars": {
+        "DATABASE_URL": "postgresql://postgres:<password>@<db-host>:5432/lastmile",
+        "JWT_SECRET": "supersecret"
+      },
+      "dockerfilePath": "apps/backend/Dockerfile"
+    },
+    {
+      "name": "frontend",
+      "rootDirectory": "apps/frontend",
+      "buildCommand": "npm install && npm run build",
+      "startCommand": "npm run preview",
+      "envVars": {
+        "VITE_BACKEND_URL": "https://backend.up.railway.app"
+      },
+      "dockerfilePath": "apps/frontend/Dockerfile"
+    }
+  ],
+  "plugins": {
+    "postgresql": {
+      "name": "db"
+    },
+    "redis": {
+      "name": "cache"
+    }
+  }
+}
