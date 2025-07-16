@@ -31,5 +31,10 @@ export default defineConfig({
 				}
 			}
 		]
+	},
+	preview: {
+		host: '0.0.0.0',
+    	port: 4173,
+    	allowedHosts: ['snaped.up.railway.app'],
 	}
 });
