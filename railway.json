@@ -8,8 +8,7 @@
       "envVars": {
         "DATABASE_URL": "postgresql://postgres:<password>@<db-host>:5432/lastmile",
         "JWT_SECRET": "supersecret"
-      },
-      "dockerfilePath": "apps/backend/Dockerfile"
+      }
     },
     {
       "name": "frontend",
@@ -18,8 +17,7 @@
       "startCommand": "npm run preview",
       "envVars": {
         "VITE_BACKEND_URL": "https://backend.up.railway.app"
-      },
-      "dockerfilePath": "apps/frontend/Dockerfile"
+      }
     }
   ],
   "plugins": {
