@@ -13,27 +13,26 @@ services:
     ports:
       - "3000:3000"
     environment:
+      - REDIS_PASSWORD=mysecretpassword
+      - REDIS_HOST=cache
+      - REDIS_PORT=6379
+      - REDIS_URL=redis://cache:6379
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/lastmile
       - JWT_SECRET=supersecret
     depends_on:
       - db
-      
+
   cache:
     image: redis:latest
     restart: always
+    environment:
+      REDIS_PASSWORD: mysecretpassword
     ports:
       - "6379:6379"
   
-  monitoring:
-    image: prom/prometheus:latest
-    restart: always
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
 
   db:
-    image: postgres:15
+    image: postgis/postgis:15-3.3
     restart: always
     ports:
       - "5432:5432"
@@ -43,6 +42,8 @@ services:
       POSTGRES_DB: lastmile
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+
 
 volumes:
   pgdata:
